@@ -28,8 +28,17 @@
     width:80%;
 }
 
+.center2{
+    margin-left:10%;
+    margin-top:15%; 
+    width:80%;
+}
+
 #allDialogExample{
     background-image:url('../img/fondo.jpg');
+}
+#registro2{
+    background-image:url('../img/fondo2.jpg');
 }
 
 

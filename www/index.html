@@ -22,12 +22,37 @@
                 <form id="LoginForm" method="post">
                         <input type="hidden" name="funcion" value="login">
                         <label class="blanco">Usuario:</label>
-                        <input type="text" name="nikname" value="" class="form_input required" />
+                        <input type="text" name="nikname" value="" id="nikname" class="form_input required" />
+                        <label class="blanco">Password</label>
+                        <input type="password" name="pass" value="" class="form_input required" /><br><br>
+                        <input type="button" name="submit"  data-theme="b" id="btnLogin" value="Entrar" />    
+
+                </form>
+                <input type="button" name="submit"  data-theme="e" id="registro3" value="Registro" />
+                 <div id="respuesta"></div>
+            </div>   
+        </div>  
+    </div>
+    <div data-role="page" id="registro2">
+         <div data-role="content" style="padding-top:0px">
+            <div class="center2"> 
+                <form id="fmr_registrer" method="post">
+                        <input type="hidden" name="funcion" value="registro">
+                        <label class="blanco">Nombre:</label>
+                        <input type="text" name="nombre" value="" class="form_input required" />
+                         <label class="blanco">Apellido:</label>
+                        <input type="text" name="apellido" value="" class="form_input required" />
+                         <label class="blanco">Correo:</label>
+                        <input type="text" name="correo" value="" class="form_input required" />
+                         <label class="blanco">identificacion:</label>
+                        <input type="text" name="identificacion" value="" class="form_input required" />
                         <label class="blanco">Password</label>
                         <input type="password" name="pass" value="" class="form_input required" />
-                        <input type="button" name="submit"  data-theme="b" id="btnLogin" value="Entrar" />                    
+                         <label class="blanco">Repetir Password</label>
+                        <input type="password" name="repeatpass" value="" class="form_input required" />
+                        <input type="button" name="submit"  data-theme="b" id="registrar" value="Guardar" />                    
                 </form>
-                 <div id="respuesta"></div>
+                 <div id="respuesta2"></div>
             </div>   
         </div>  
     </div>
@@ -38,14 +63,39 @@
         </div>
         <div  data-theme="a" id="con_general" style="height:100%; overflow:auto;"  >
 
-            <div role="main" class="ui-content" >
-                <iframe  id="iframew" style="width:100%; height:300px; border:0px"></iframe>
+            <div role="main" class="ui-content" style="padding:0px" >
+                <iframe  id="iframew" style="width:100%; height:85vh; border:0px"></iframe>
                 
              </div>                   
                         
         </div>
         <div data-role="footer" data-position="fixed">
-            <button class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-user" id="users_log" style="width: 35%"></button>
+            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                <button data-icon="user" id="users_log" class="ui-btn ui-shadow ui-corner-all"></button>
+                <button data-icon="location">Mapa</button>
+                <button data-icon="comment" id="detallebtn">Detalle</button>
+            </fieldset>
+           
+        </div> 
+    </div>
+    <div data-role="page" id="page2"> 
+        
+        <div data-role="header" data-position="inline" data-theme="a">              
+                    <h1>Detalle Solicitud</h1>                
+        </div>
+        <div  data-theme="a" id="con_general" style="height:100%; overflow:auto;"  >
+
+            <div role="main" class="ui-content" id="resultDetalle" style="text-align:center;padding:0px" >
+
+                
+             </div>                   
+                        
+        </div>
+        <div data-role="footer" data-position="fixed">
+            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true"  style="text-align:center;padding:0px" >
+                <button data-icon="arrow-l"  class="ui-btn ui-icon-arrow-l ui-btn-icon-left ui-shadow ui-corner-all" id="atras"></button>
+            </fieldset>
+           
         </div> 
     </div>
     <script type="text/javascript" src="js/index.js"></script>

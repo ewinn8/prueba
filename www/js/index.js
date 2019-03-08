@@ -73,6 +73,78 @@ $(document).ready(function() {
         
     })
 
+
+    $('#detallebtn').click(function(){
+            session=localStorage.getItem("SESSION")
+            parametros = {"funcion" : 'detalle', "login":session}
+            $.ajax({
+
+                type: "POST",
+                url: url,
+                cache: false,
+                data: parametros,
+                success: function(resp){                  
+                  $.mobile.changePage("#page2", {reloadPage:false});
+                  $('#resultDetalle').html(resp);
+
+                },
+                error: function(){
+                    alert("NO se pudo completar la accion")
+                }
+            })
+
+     }) 
+    $('#atras').click(function(){
+             $.mobile.changePage("#inicio", {reloadPage:false});
+
+     }) 
+
+    $('#registro3').click(function(){
+             $.mobile.changePage("#registro2", {reloadPage:false});
+
+     }) 
+
+    $('#registrar').click(function(){
+        
+        form = $(this).parents("#LoginForm");
+        check = checkCampos(form);
+        if(check) {
+            formData = $('#fmr_registrer').serialize()
+            $.ajax({
+
+            type: "POST",
+            url: url,
+            cache: false,
+            data: formData,
+            success: function(resp){
+
+                 $respuesta=resp.split("-");
+
+                 if($respuesta[0]=='error'){
+                    alert($respuesta[1]);
+                 }else{
+                    alert("Se creo usuario  "+resp);
+                    $.mobile.changePage("#allDialogExample", {reloadPage:false});
+                    $("#nikname").val(resp);
+                 }
+                               
+                
+                                                                                  
+            },
+            error: function(e){
+                alert("NO se pudo completar la accion"+e)
+            }
+        })
+            
+        }
+        else {
+            alert("Debe deligenciar todos los campos")
+        }
+        
+    })
+
+
+
     $('#buscar').click(function(){
         
             formData = $('#fmr_buscar').serialize()
