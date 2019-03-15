@@ -48,12 +48,14 @@ $(document).ready(function() {
                     nombre=localStorage.getItem("NOMBRE")
                     session=localStorage.getItem("SESSION")
                     $('#users_log').html(nombre);
+                    $('#loginN').val(session);
                     $('#iframew').attr("src", "http://productoswebs.com/backend/mapa.php?login="+session);
                     console.log(session);
                    
 
                         $.mobile.changePage("#inicio", {reloadPage:false});
                         $('#users').html(nombre);
+                       
                         
                         
                     
@@ -140,6 +142,29 @@ $(document).ready(function() {
         else {
             alert("Debe deligenciar todos los campos")
         }
+        
+    })
+
+    $('#nuevaPlaca').click(function(){
+        
+
+            formData = $('#newPlaca').serialize()
+            $.ajax({
+
+                type: "POST",
+                url: url,
+                cache: false,
+                data: formData,
+                success: function(resp){
+                       $('.ui-popup').popup('close');
+                      
+                  
+                },
+                error: function(e){
+                    alert("NO se pudo completar la accion"+e)
+                }
+            })
+            
         
     })
 
@@ -230,6 +255,38 @@ function checkCampos(obj) {
         else {
             return true;
         }
+ }
+
+ function cargarPlacas(){
+    usu =localStorage.getItem("SESSION")
+    parametros = {"funcion" : 'cargarPlaca', "login":usu}
+               
+        $.ajax({
+
+            type: "POST",
+            url:   "http://productoswebs.com/backend/funciones.php",
+            cache: false,
+            data: parametros,
+            success: function(resp){
+                
+                 $("#loadPLaca").html(resp).trigger('create');
+             }
+            })
+
+ }
+
+
+ function validarPlaca(id, text){
+    
+        patronPlaca=/^[A-Z]{3}-[0-9]{3}|^[A-Z]{3}-[1-9]{2}[A-Z]{1}|^[1-9]{4}-[A-Z,1-9]{2}|^[A-Z]{2}-[1-9]{4}$/;
+        if( patronPlaca.test(text)){
+            $("#"+id).css({'background-color' : '#a7f44a'});
+            $("#nuevaPlaca").removeAttr('disabled');
+        }else{
+            $("#"+id).css({'background-color' : '#f84b1c'});
+            $("#nuevaPlaca").attr('disabled', 'disabled');
+        }
+
  }
 
 function cargarPanelGestion(id, cedula){
